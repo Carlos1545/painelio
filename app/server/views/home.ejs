@@ -4,14 +4,10 @@
         <% include partials/head %>
     </head>
     <body>
-        <nav class="navbar navbar-expand navbar-light bg-light">
-            <div class="nav-item">
-                <div class="navbar-brand">Control Panel</div>
-            </div>
-            <div class="navbar-nav ml-auto">
-                <div class="nav-item"><button class="btn navbar-btn btn-outline-dark" id="btn-logout">Sign Out</button></div>
-            </div>
-        </nav>
+        <% include partials/aside-dashboard %>
+        <div class="app-content">
+            <% include partials/header-dashboard %>
+        </div>
 
         <% include partials/alert %> 
         <% include partials/confirm %> 

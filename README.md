@@ -1,4 +1,4 @@
-# Node Login
+<!--# Node Login
 
 [![node-login](./readme.img/node-login.jpg?raw=true)](https://nodejs-login.herokuapp.com)
 
@@ -50,4 +50,4 @@ To do this on OSX you can simply add them to your .profile or .bashrc file.
 
 ## Contributing
 
-Questions and suggestions for improvement are welcome.
+Questions and suggestions for improvement are welcome.-->
