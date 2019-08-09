@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include partials/head %>
+    </head>
+    <body>
+        <div class="center-vertical" id="login">
+            <form class="card card-body bg-light" method="post">
+                <h2>Painel.io</h2>
+                <h6>Entre na sua conta</h6>
+                <div class="form-group"><label>Usuário</label><input class="form-control" type="text" id="user-tf" name="user" /></div>
+                <div class="form-group"><label>Senha</label><input class="form-control" type="password" id="pass-tf" name="pass" /></div>
+                <div id="row1"><button class="btn btn-light btn-left" type="button" id="btn_remember"><span class="fa fa-check-square"></span>Lembre-me</button><button class="btn btn-primary" type="submit" id="btn_sign_in"><span class="fa fa-lock"></span>Entrar</button></div>
+                <hr/>
+                <div class="btm-links">
+                    <div id="forgot-password"><a href="#">Esqueceu sua senha?</a></div>
+                    <div id="create-account"><a href="/signup">Crie uma conta!</a></div>
+                </div>
+            </form>
+        </div>
+
+        <% include partials/alert %>
+        <% include partials/lost-password %>
+
+        <script src="/js/views/login.js"></script>
+        <script src="/js/controllers/loginController.js"></script>
+        <script src="/js/form-validators/loginValidator.js"></script>
+        <script src="/js/form-validators/emailValidator.js"></script>
+
+        <% include partials/script %>
+    </body>
+</html>
