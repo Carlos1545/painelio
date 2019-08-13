@@ -185,14 +185,12 @@ h6 {
   background-color: #32374a;
   color: #fff;
 }
-
 .painel-aside ul li{
   width: 100%
 }
 .painel-aside ul li i.fas, .painel-aside ul li i.far{
   margin-right: 10px;
 }
-
 .painel-aside ul .text-muted{
   width: 100%;
   position: relative;
@@ -205,4 +203,59 @@ h6 {
   margin-top: 15px;
 }
 
-/* --------------------------- ASIDE-DASHBOARD */
+/* --------------------------- TOP BAR DASHBOARD */
+.btn-painel{
+  background: none;
+  border: none;
+  color: #58666e;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+.btn-painel:hover, .btn-painel:focus{
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.profile-button{
+  line-height: 39px;
+  padding: 1px 10px;
+}
+.btn-painel span.painel-avatar img{
+  height: 35px;
+  border-radius: 100%;
+}
+.btn-painel span.painel-avatar{
+  margin: 0px 5px;
+}
+.btn-painel .badge-danger{
+  display: inline-block;
+  padding: 0px 4px;
+  font-size: 10px;
+  position: absolute;
+  top: 4px;
+  background-color: #f05050;
+  color: #fff;
+  border-radius: 500px;
+}
+.painel-header-form input, .painel-header-form button.search-btn{
+  background-color: #edf1f2;
+  color: #58666e;
+  height: 30px;
+  padding: 5px 15px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 500px;
+  border: none;
+  margin-right: 0px !important;
+}
+.painel-header-form input{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-left: 10px;
+}
+.painel-header-form button.search-btn{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.painel-header-form input:focus{
+  box-shadow: none;
+  background-color: #edf1f2;
+}
