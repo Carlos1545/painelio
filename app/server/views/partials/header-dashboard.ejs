@@ -1,15 +1,17 @@
 <!-- header -->
 <header id="header" class="painel-header" role="menu">
     <!-- navbar header -->
-    <nav class="navbar navbar-expand-md bg-white shadow-sm p-0">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-sm bg-white shadow-sm p-0">
+    <button class="btn-painel navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <a href="#" class="btn-painel no-shadow navbar-btn" ui-toggle-class="app-aside-folded" target=".app">
+        <button class="btn-painel" id="sidebarCollapse">
+        
             <i class="fa fa-dedent fa-fw text"></i>
-        </a>
+        </button>
+        
         <form class="form-inline painel-header-form">
             <div class="input-group">
                 <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar projetos ..." aria-label="Search">
@@ -32,7 +34,7 @@
         </li>
         <li class="nav-item position-relative">
             <button class="btn-painel dropdown-toggle profile-button" type="button" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Adalberto Botelho
+                <span class="painel-hidden">Adalberto Botelho</span>
                 <span class="painel-avatar pull-right">
                     <img src="/images/a0.jpg" alt="foto-de-perfil">
                     <i class="on md b-white bottom"></i>
