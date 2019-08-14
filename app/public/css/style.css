@@ -157,17 +157,11 @@ h6 {
   height: 100%;
   width: 200px;
   float: left;
+
+  -webkit-transition: .5s; /* Safari prior 6.1 */
+  transition: .5s;
 }
-.painel-aside .brand{
-  display: inline-block;
-  color: #eaebed;
-  padding: 0 20px;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 50px;
-  text-align: center;
-  text-decoration: none;
-}
+
 .painel-aside ul li a{
   position: relative;
   display: block;
@@ -202,8 +196,53 @@ h6 {
   margin-bottom: 10px;
   margin-top: 15px;
 }
-
+/* --------------------------- OFF SCREEN SIDEBAR HACK */
+.off-screen{
+  position: fixed;
+  top: 41px;
+  bottom: 0;
+  z-index: 1010;
+  display: block !important;
+  width: 75%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  visibility: visible;
+}
+.off-screen + * {
+  position: fixed;
+  top: 41px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1015;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f0f3f4;
+  -webkit-transform: translate3d(75%, 0, 0px);
+  transform: translate3d(75%, 0, 0px);
+  -webkit-transition: -webkit-transform 0.2s ease;
+  -moz-transition: -moz-transform 0.2s ease;
+  -o-transition: -o-transform 0.2s ease;
+  transition: transform 0.2s ease;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
 /* --------------------------- TOP BAR DASHBOARD */
+.painel-header{
+  background-color: #fff;
+}
+.painel-header .brand{
+  display: inline-block;
+  background-color: #3a3f51;
+  color: #eaebed;
+  padding: 0 20px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 41px;
+  text-decoration: none;
+  width: 200px;
+}
 .btn-painel{
   background: none;
   border: none;
@@ -259,3 +298,21 @@ h6 {
   box-shadow: none;
   background-color: #edf1f2;
 }
+@media only screen and (max-width: 767px){
+  .painel-hidden-md{
+    display: none;
+  }
+  .painel-header{
+    background-color: #3a3f51;
+  }
+  .input-group.search-form{
+    margin: 5px auto;
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 575px){
+  .painel-hidden-sm{
+    display: none;
+  }
+}
+
