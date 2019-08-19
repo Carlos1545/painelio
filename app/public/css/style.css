@@ -198,9 +198,15 @@ h6 {
 }
 
 /* --------------------------- DROPDOWN ASIDE BAR */
-.painel-dropped{
+.painel-dropbox{
   background-color: #2e3344;
   list-style: none;
+}
+.dropped i.fa-angle-right, .painel-dropdown i.fa-angle-down, ul.painel-dropbox{
+  display: none;
+}
+.dropped i.fa-angle-down, .dropped ul.painel-dropbox{
+  display: block;
 }
 
 /* --------------------------- OFF SCREEN SIDEBAR HACK */

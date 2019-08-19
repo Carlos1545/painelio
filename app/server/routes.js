@@ -99,6 +99,28 @@ module.exports = function(app) {
 			});
 		}
 	});
+	app.get('/colaboradores', function(req, res) {
+		if (req.session.user == null){
+			res.redirect('/');
+		}	else{
+			res.render('colaboradores', {
+				title : 'Control Panel',
+				countries : CT,
+				udata : req.session.user
+			});
+		}
+	});
+	app.get('/clientes', function(req, res) {
+		if (req.session.user == null){
+			res.redirect('/');
+		}	else{
+			res.render('clientes', {
+				title : 'Control Panel',
+				countries : CT,
+				udata : req.session.user
+			});
+		}
+	});
 
 /*
 	new accounts

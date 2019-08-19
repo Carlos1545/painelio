@@ -6,10 +6,9 @@ $(document).ready(function () {
     $('#sidebarMovement').click( function () {
         $('#aside').toggleClass('off-screen');
     });
-    $('#painel-dropdown').click( function (event) {
+    $('.painel-dropdown').click( function (event) {
         event.preventDefault();
-        $(this).find('span.pull-right i.fa-angle-right').toggleClass('d-none');
-        $(this).find('span.pull-right i.fa-angle-down').toggleClass('d-none');
+        $(this).parent().toggleClass('dropped');
     });
     
 });
