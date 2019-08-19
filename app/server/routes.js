@@ -88,6 +88,18 @@ module.exports = function(app) {
 		}
 	});
 
+	app.get('/atualizar-perfil', function(req, res) {
+		if (req.session.user == null){
+			res.redirect('/');
+		}	else{
+			res.render('atualizar-perfil', {
+				title : 'Control Panel',
+				countries : CT,
+				udata : req.session.user
+			});
+		}
+	});
+
 /*
 	new accounts
 */

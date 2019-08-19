@@ -1,8 +1,11 @@
+<% user = udata %>
+<!-- TODO: Tratamento de erro caso não encontre o objeto udata -->
+
 <!-- header -->
 <header id="header" class="painel-header" role="menu">
   <!-- navbar header -->
-  <nav class="navbar navbar-expand-md shadow-sm p-0">
-    <a class="brand painel-brand" href="#">
+  <nav class="navbar navbar-expand-md p-0">
+    <a class="brand painel-brand" href="/home">
         <i class="fas fa-columns"></i>
         Painel.io
     </a>
@@ -42,14 +45,14 @@
         </li>
         <li class="nav-item position-relative">
             <button class="btn-painel dropdown-toggle profile-button" type="button" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="painel-hidden-md">Adalberto Botelho</span>
+                <span class="painel-hidden-md"><%= user.name %></span>
                 <span class="painel-avatar pull-right">
                     <img src="/images/a0.jpg" alt="foto-de-perfil">
                     <i class="on md b-white bottom"></i>
                 </span>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownProfile">
-                <a class="dropdown-item" href="#">Perfil</a>
+                <a class="dropdown-item" href="/atualizar-perfil">Perfil</a>
                 <button class="dropdown-item" id="btn-logout">Logout</button>
             </div>
         </li>

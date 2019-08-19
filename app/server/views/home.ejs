@@ -9,10 +9,19 @@
         </div>
         <% include partials/aside-dashboard %>
 
-        <div>teste<div>
+        <div class="painel-content-margin">
+            <div class="container-fluid painel-upside-title">Dashboard</div>
+            <div class="container">
+                <div class="col-md-12"> Ola </div>
+            </div>
+        <div>
 
-        <% include partials/alert %> 
-        <% include partials/confirm %> 
+        <script src="/js/views/home.js"></script>
+        <script src="/js/controllers/homeController.js"></script>
+        <script src="/js/form-validators/accountValidator.js"></script>
+
+        <% include partials/alert %>
+        <% include partials/confirm %>
 
         <% include partials/script %> 
     </body>

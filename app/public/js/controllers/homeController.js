@@ -21,7 +21,7 @@ function HomeController()
 			url: '/delete',
 			type: 'POST',
 			success: function(data){
-	 			that.showLockedAlert('Your account has been deleted.<br>Redirecting you back to the homepage.');
+	 			that.showLockedAlert('Sua conta foi deletada.<br> Redirecionando você para a página inicial.');
 			},
 			error: function(jqXHR){
 				console.log(jqXHR.responseText+' :: '+jqXHR.statusText);
@@ -37,7 +37,7 @@ function HomeController()
 			type: 'POST',
 			data: {logout : true},
 			success: function(data){
-	 			that.showLockedAlert('You are now logged out.<br>Redirecting you back to the homepage.');
+	 			that.showLockedAlert('Você deslogou.<br> Redirecionando você para a página de login.');
 			},
 			error: function(jqXHR){
 				console.log(jqXHR.responseText+' :: '+jqXHR.statusText);
@@ -47,7 +47,7 @@ function HomeController()
 
 	this.showLockedAlert = function(msg){
 		$('.modal-alert').modal({ show : false, keyboard : false, backdrop : 'static' });
-		$('.modal-alert .modal-header h4').text('Success!');
+		$('.modal-alert .modal-header h4').text('Sucesso!');
 		$('.modal-alert .modal-body p').html(msg);
 		$('.modal-alert').modal('show');
 		$('.modal-alert button').click(function(){window.location.href = '/';})
@@ -58,8 +58,8 @@ function HomeController()
 HomeController.prototype.onUpdateSuccess = function()
 {
 	$('.modal-alert').modal({ show : false, keyboard : true, backdrop : true });
-	$('.modal-alert .modal-header h4').text('Success!');
-	$('.modal-alert .modal-body p').html('Your account has been updated.');
+	$('.modal-alert .modal-header h4').text('Sucesso!');
+	$('.modal-alert .modal-body p').html('Sua conta foi atualizada.');
 	$('.modal-alert').modal('show');
 	$('.modal-alert button').off('click');
 }

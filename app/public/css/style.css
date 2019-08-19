@@ -196,6 +196,13 @@ h6 {
   margin-bottom: 10px;
   margin-top: 15px;
 }
+
+/* --------------------------- DROPDOWN ASIDE BAR */
+.painel-dropped{
+  background-color: #2e3344;
+  list-style: none;
+}
+
 /* --------------------------- OFF SCREEN SIDEBAR HACK */
 .off-screen{
   position: fixed;
@@ -298,6 +305,43 @@ h6 {
   box-shadow: none;
   background-color: #edf1f2;
 }
+.painel-upside-title{
+  padding: 15px;
+
+  font-size: 24px;
+  font-weight: 300;
+  color: #58666e;
+  background-color: #f6f8f8;
+  border-bottom: 1px solid #dee5e7;
+}
+
+/* --------------------------- FORM UPDATE PROFILE */
+.painel-content-margin{
+  margin-left: 200px;
+}
+.painel-default{
+  border-radius: 2px;
+  margin: 20px 0px;
+  background-color: #fff;
+  border: 1px solid #dee5e7;
+}
+.painel-form-heading{
+  background-color: #f6f8f8;
+  color: #333;
+  font-weight: 700;
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+}
+.painel-form-body{
+  padding: 15px;
+}
+.painel-line-dashed{
+  margin: 15px -15px;
+  border: dashed 1px #dee5e7;
+  height: 2px;
+}
+
+/* --------------------------- RESPONSIVE */
 @media only screen and (max-width: 767px){
   .painel-hidden-md{
     display: none;
@@ -307,7 +351,10 @@ h6 {
   }
   .input-group.search-form{
     margin: 5px auto;
-    width: 50%;
+    width: 90%;
+  }
+  .painel-content-margin{
+    margin-left: 0px;
   }
 }
 @media only screen and (max-width: 575px){

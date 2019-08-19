@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <% include partials/head %>
+    </head>
+    <body>
+        <div class="app-content">
+            <% include partials/header-dashboard %>
+        </div>
+        <% include partials/aside-dashboard %>
+
+        <% user = udata %>
+        <!-- TODO: Tratamento de erro caso não encontre o objeto udata -->
+
+        <div id="main-content" class="painel-content-margin">
+            <div class="container-fluid painel-upside-title">Atualizar Perfil</div>
+            <div class="container">
+                <div class="painel-default">
+                    <div class="painel-form-heading">Dados Cadastrais</div>
+                    <div class="painel-form-body">
+                        <form action="#" method="post">
+                          <input type="hidden" name="id" value="<%= user.id %>" />
+                          <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" placeholder="Insira seu nome" value="<%= user.name %>" />
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="Insira seu email" value="<%= user.email %>" />
+                            </div>
+                            <div class="col-md-6">
+                                <label>Telefone</label>
+                                <input type="text" class="form-control" placeholder="Insira seu telefone" value="<%= user.telefone %>" />
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label>Endereço</label>
+                            <input type="text" class="form-control" placeholder="Insira seu Endereço" value="<%= user.endereco %>" />
+                          </div>
+                          <div class="form-group">
+                            <label>Imagem de Perfil</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile" />
+                                <label class="custom-file-label" for="customFile"><%= user.imagem %></label>
+                            </div>
+                          </div>
+
+                          <div class="painel-line-dashed"></div>
+                          <div class="form-group">
+                            <label>Login</label>
+                            <input type="text" class="form-control" placeholder="Insira seu login" value="<%= user.user %>" />
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Senha</label>
+                                <input type="password" class="form-control" placeholder="Insira sua nova senha" />
+                            </div>
+                            <div class="col-md-6">
+                                <label>Confirmação de senha</label>
+                                <input type="password" class="form-control" placeholder="Confirme sua nova senha" />
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                          </div>
+                        </form>
+                    </div>    
+                </div>
+            </div>
+        <div>
+
+        <script src="/js/views/home.js"></script>
+        <script src="/js/controllers/homeController.js"></script>
+        <script src="/js/form-validators/accountValidator.js"></script>
+
+        <% include partials/alert %>
+        <% include partials/confirm %>
+
+        <% include partials/script %> 
+    </body>
+</html>
