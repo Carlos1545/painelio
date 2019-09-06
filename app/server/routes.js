@@ -94,30 +94,29 @@ module.exports = function(app) {
 		}	else{
 			res.render('atualizar-perfil', {
 				title : 'Control Panel',
-				countries : CT,
 				udata : req.session.user
 			});
 		}
 	});
-	app.get('/colaboradores', function(req, res) {
+	app.get('/usuario', function(req, res) {
 		if (req.session.user == null){
 			res.redirect('/');
 		}	else{
-			res.render('colaboradores', {
+			res.render('usuario', {
 				title : 'Control Panel',
-				countries : CT,
-				udata : req.session.user
+				udata : req.session.user,
+				role : req.query.role
 			});
 		}
 	});
-	app.get('/clientes', function(req, res) {
+	app.get('/criar-usuario', function(req, res) {
 		if (req.session.user == null){
 			res.redirect('/');
 		}	else{
-			res.render('clientes', {
+			res.render('criar-usuario', {
 				title : 'Control Panel',
-				countries : CT,
-				udata : req.session.user
+				udata : req.session.user,
+				role : req.query.role
 			});
 		}
 	});

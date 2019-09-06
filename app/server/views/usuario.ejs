@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include partials/head %>
+    </head>
+    <body>
+        <div class="app-content">
+            <% include partials/header-dashboard %>
+        </div>
+        <% include partials/aside-dashboard %>
+
+        <div id="main-content" class="painel-content-margin">
+            <div class="container-fluid painel-upside-title"><%= role %></div>
+
+            <div class="container">
+                <div class="col-md-12">  
+                <div class="painel-default">
+                    <div class="painel-form-heading"> 
+                        Lista de <%= role %> 
+                        <a class="painel-btn pull-right" href="/criar-usuario?role=<%= role %>">Criar novo <%= role %></a>
+                    </div>
+                    <div class="painel-table-responsive painel-form-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-inline justify-content-end">
+                                        <label>Pesquisar: <input type="search" class="form-control form-control-sm" placeholder=""></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table role="grid" ui-options="{
+                            sAjaxSource: 'api/datatable.json',
+                            aoColumns: [
+                            { mData: 'engine' },
+                            { mData: 'browser' },
+                            { mData: 'platform' },
+                            { mData: 'version' },
+                            { mData: 'grade' }
+                            ]
+                            }" >
+                            <thead>
+                                <tr role="row">
+                                    <th style="width: 5%;" class="painel-sorting" tabindex="0">ID</th>
+                                    <th style="width: 25%;" class="painel-sorting" tabindex="0">Nome</th>
+                                    <th style="width: 15%;" class="painel-sorting" tabindex="0">Email</th>
+                                    <th style="width: 15%;" class="painel-sorting" tabindex="0">Telefone</th>
+                                    <th style="width: 20%;" class="painel-sorting" tabindex="0">Endereço</th>
+                                    <th style="width: 15%;" class="painel-sorting" tabindex="0">Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd"><td valign="top" colspan="6" class="dataTables_empty">Sem resultados no momento</td></tr>
+                            </tbody>
+                        </table>
+                             
+                        <div class="container">
+                            <div class="row p-2">
+                                <div class="col-sm-6">
+                                    Mostrando 0 à 0 de 0 entradas
+                                </div>
+                                <div class="col-sm-6">
+                                    <ul class="pagination justify-content-end">
+                                        <li class="paginate_button previous disabled" tabindex="0"><a href="#">Anterior</a></li>
+                                        <li class="paginate_button next disabled" tabindex="0"><a href="#">Próximo</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- /.painel-table-responsive.painel-form-body -->
+                </div> <!-- /.painel-default -->
+                </div> <!-- /.col-md-12 -->
+            </div> <!-- /.container -->
+        <div> <!-- /#main-content.painel-content-margin -->
+
+        <script src="/js/views/home.js"></script>
+        <script src="/js/controllers/homeController.js"></script>
+        <script src="/js/form-validators/accountValidator.js"></script>
+
+        <% include partials/alert %>
+        <% include partials/confirm %>
+
+        <% include partials/script %> 
+    </body>
+</html>

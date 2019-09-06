@@ -1,33 +1,27 @@
-
 const crypto 		= require('crypto');
 const moment 		= require('moment');
-const MongoClient 	= require('mongodb').MongoClient;
 
-var db, accounts;
-MongoClient.connect(process.env.DB_URL, { useNewUrlParser: true }, function(e, client) {
-	if (e){
-		console.log(e);
-	}	else{
-		db = client.db(process.env.DB_NAME);
-		accounts = db.collection('accounts');
-	// index fields 'user' & 'email' for faster new account validation //
-		accounts.createIndex({user: 1, email: 1});
-		console.log('mongo :: connected to database :: "'+process.env.DB_NAME+'"');
+const dao			= require('../../dao/generic-dao');
+
+/* ------------------------------- Gerar objeto 'usuarios' que substitui 'accounts' */
+dao('usuarios', function(e, entity){
+ 	if(e){
+		console.error(e);
+		throw e;
+	}else{
+		accounts = entity;	
 	}
 });
 
 const guid = function(){return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});}
 
-/*
-	login validation methods
-*/
-
+/* ------------------------------- Login validation methods */
 exports.autoLogin = function(user, pass, callback)
 {
 	accounts.findOne({user:user}, function(e, o) {
 		if (o){
 			o.pass == pass ? callback(o) : callback(null);
-		}	else{
+		} else{
 			callback(null);
 		}
 	});

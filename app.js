@@ -1,18 +1,18 @@
-
 /**
 	* Node.js Login Boilerplate
 	* More Info : https://github.com/braitsch/node-login
 	* Copyright (c) 2013-2018 Stephen Braitsch
 **/
 
-var http = require('http');
-var express = require('express');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var MongoStore = require('connect-mongo')(session);
+const http = require('http');
+const dbconfig = require('./app/config/database');
+const express = require('express');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const MySQLStore = require('express-mysql-session')(session);
 
-var app = express();
+const app = express();
 
 app.locals.pretty = true;
 app.set('port', process.env.PORT || 3000);
@@ -23,25 +23,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/app/public'));
 
-// build mongo database connection url //
-
-process.env.DB_HOST = process.env.DB_HOST || 'localhost'
-process.env.DB_PORT = process.env.DB_PORT || 27017;
-process.env.DB_NAME = process.env.DB_NAME || 'node-login';
-
-if (app.get('env') != 'live'){
-	process.env.DB_URL = 'mongodb://'+process.env.DB_HOST+':'+process.env.DB_PORT;
-}	else {
-// prepend url with authentication credentials // 
-	process.env.DB_URL = 'mongodb://'+process.env.DB_USER+':'+process.env.DB_PASS+'@'+process.env.DB_HOST+':'+process.env.DB_PORT;
-}
-
+/* ------------------------------- Mysql Session */
 app.use(session({
 	secret: 'faeb4453e5d14fe6f6d04637f78077c76c73d1b4',
 	proxy: true,
 	resave: true,
 	saveUninitialized: true,
-	store: new MongoStore({ url: process.env.DB_URL })
+	store: new MySQLStore(dbconfig.connection)
 	})
 );
 
