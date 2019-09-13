@@ -18,7 +18,7 @@ const guid = function(){return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[
 /* ------------------------------- Login validation methods */
 exports.autoLogin = function(user, pass, callback)
 {
-	accounts.findOne({user:user}, function(e, o) {
+	accounts.findOne({login:user}, function(e, o) {
 		if (o){
 			o.pass == pass ? callback(o) : callback(null);
 		} else{
@@ -29,11 +29,11 @@ exports.autoLogin = function(user, pass, callback)
 
 exports.manualLogin = function(user, pass, callback)
 {
-	accounts.findOne({user:user}, function(e, o) {
+	accounts.findOne({login:user}, function(e, o) {
 		if (o == null){
 			callback('user-not-found');
 		}	else{
-			validatePassword(pass, o.pass, function(err, res) {
+			validatePassword(pass, o.password, function(err, res) {
 				if (res){
 					callback(null, o);
 				}	else{
@@ -47,10 +47,10 @@ exports.manualLogin = function(user, pass, callback)
 exports.generateLoginKey = function(user, ipAddress, callback)
 {
 	let cookie = guid();
-	accounts.findOneAndUpdate({user:user}, {$set:{
+	accounts.findOneAndUpdate({login:user}, {
 		ip : ipAddress,
 		cookie : cookie
-	}}, {returnOriginal : false}, function(e, o){ 
+	}, {returnOriginal : false}, function(e, o){ 
 		callback(cookie);
 	});
 }
@@ -64,13 +64,14 @@ exports.validateLoginKey = function(cookie, ipAddress, callback)
 exports.generatePasswordKey = function(email, ipAddress, callback)
 {
 	let passKey = guid();
-	accounts.findOneAndUpdate({email:email}, {$set:{
+	accounts.findOneAndUpdate({email:email}, {
 		ip : ipAddress,
-		passKey : passKey
-	}, $unset:{cookie:''}}, {returnOriginal : false}, function(e, o){
+		passKey : passKey,
+		cookie : '' }, 
+		{returnOriginal : false}, function(e, o){
 		if (o.value != null){
 			callback(null, o.value);
-		}	else{
+		}else{
 			callback(e || 'account not found');
 		}
 	});
@@ -88,7 +89,7 @@ exports.validatePasswordKey = function(passKey, ipAddress, callback)
 
 exports.addNewAccount = function(newData, callback)
 {
-	accounts.findOne({user:newData.user}, function(e, o) {
+	accounts.findOne({login:newData.login}, function(e, o) {
 		if (o){
 			callback('username-taken');
 		}	else{
@@ -96,10 +97,10 @@ exports.addNewAccount = function(newData, callback)
 				if (o){
 					callback('email-taken');
 				}	else{
-					saltAndHash(newData.pass, function(hash){
-						newData.pass = hash;
+					saltAndHash(newData.password, function(hash){
+						newData.password = hash;
 					// append date stamp when record was created //
-						newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+						newData.data = moment().format('YYYY-MM-DD hh:mm:ss');
 						accounts.insertOne(newData, callback);
 					});
 				}

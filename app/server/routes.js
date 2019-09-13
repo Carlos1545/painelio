@@ -131,11 +131,11 @@ module.exports = function(app) {
 	
 	app.post('/signup', function(req, res){
 		AM.addNewAccount({
-			name 	: req.body['name'],
+			nome 	: req.body['nome'],
 			email 	: req.body['email'],
-			user 	: req.body['user'],
-			pass	: req.body['pass'],
-			country : req.body['country']
+			login 	: req.body['login'],
+			password: req.body['password']
+			//country : req.body['country']
 		}, function(e){
 			if (e){
 				res.status(400).send(e);

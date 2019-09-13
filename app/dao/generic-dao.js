@@ -20,15 +20,14 @@ function genericDao(tableName, callback){
         callback(erro, entity);
     });
     
-    entity.findOne = function(entity2, callback){
+    entity.findOne = function(entityToFind, callback){
         let entityEncontrado;
 
         try{
             for(let i = 0; i < this.dados.length; i++){
-                let hasOne = Object.keys(entity2).every(k1 =>{
-                    Object.keys(this.dados[i]).some(k2 => {
-                        entity2[k1] === this.dados[i][k2];
-                    })
+                let hasOne = Object.entries(entityToFind).every( k1 => {
+                    return Object.entries(this.dados[i]).some(k2 => 
+                        JSON.stringify(k1) === JSON.stringify(k2));
                 });
                 if(hasOne)
                     entityEncontrado = this.dados[i];
@@ -37,12 +36,11 @@ function genericDao(tableName, callback){
             this.erro = err;
             console.error(err);
         }
-        callback(this.erro, entityEncontrado);
+        callback(this.erro, entityEncontrado, this);
     }
     entity.insertOne = function(newData, callbackFunction){
-        let sql = `INSERT INTO ${tableName} (${entity.campos[1]}, ${entity.campos[2]}, ${entity.campos[6]}, ${entity.campos[7]}) VALUES (?, ?, ?, ?)`;
-        
-        connection.query(sql, [newData.name, newData.email, newData.login, newData.pass], function(error, entityInserido){
+        let sql2 = `INSERT INTO ${tableName} (${Object.keys(newData).map(current => current)}) VALUES (${Object.values(newData).map( () => '?')})`;
+        connection.query(sql2, Object.values(newData), function(error, entityInserido){
             if(error){
                 throw error;
             }else{
@@ -50,22 +48,45 @@ function genericDao(tableName, callback){
             }
         });
     }
-    entity.findOneAndUpdate = function(objectToFind, keysToUpdate, otherObject, callcallbackFunctionback){
-
+    entity.findOneAndUpdate = function(entityToFind, keysToUpdate, otherObject, callbackFunction){
+        this.findOne(entityToFind, function(e, o, all){
+            if (o == null){
+                callbackFunction('user-not-found');
+            }else{
+                all.updateOne(o, keysToUpdate, function(error, entityInserido){
+                    if(error){
+                        callbackFunction(error, null);
+                    }else{
+                        callbackFunction(error, entityInserido);
+                    }
+                });
+            }
+        });
+    }
+    entity.updateOne = function(entityToUpdate, fieldsEntityToUpdate, callbackFunction){
+        let sql = `UPDATE ${tableName} SET ${Object.keys(fieldsEntityToUpdate).map((c, i) => c + ' = ?')} WHERE id = ${entityToUpdate.id}`;
+        connection.query(sql, Object.values(fieldsEntityToUpdate), function(error, entityInserido){
+            if(error){
+                callbackFunction(error, null);
+            }else{
+                callbackFunction(null, entityInserido)
+            }
+        })
     }
     entity.find = function(){
-
+        console.log("find");
     }
     entity.deleteOne = function(){
-
+        console.log("deleteOne");
     }
     entity.deleteMany = function({}, callbackFunction){
-
+        console.log("deleteMany");
     }
     entity.indexes = function(teste, callbackFunction){
+        console.log("indexes");
         callbackFunction(e, indexes);
     }
 
     callback(erro, entity);
-}
+} 
 module.exports = genericDao;

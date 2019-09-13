@@ -17,30 +17,30 @@
                 <hr/>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Nome</label>
-                    <div class="col-sm-9"><input class="form-control" id="name-tf" type="text" name="name" value="<%= user.name %>" /></div>
+                    <div class="col-sm-9"><input class="form-control" id="name-tf" type="text" name="nome" value="<%= user.name %>" /></div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Email</label>
                     <div class="col-sm-9"><input class="form-control" id="email-tf" type="email" name="email" value="<%= user.email %>" /></div>
                 </div>
-                <div class="form-group row margin-zero">
+                <!-- <div class="form-group row margin-zero">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Localização</label>
                     <div class="col-sm-9">
                       <select class="custom-select" id="country-list" name="country">
-                        <% countries.forEach(element => {%>
-                            <option><%= element.name; %></option>
-                        <% }) %>
+                        <% // countries.forEach(element => { %>
+                            <option><%= // element.name; %></option>
+                        <% // }) %>
                       </select>
                     </div>
-                </div>
+                </div> -->
                 <hr/>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Login</label>
-                    <div class="col-sm-9"><input class="form-control disabled" id="user-tf" type="text" name="user" value="<%= user.user%>" /></div>
+                    <div class="col-sm-9"><input class="form-control disabled" id="user-tf" type="text" name="login" value="<%= user.user%>" /></div>
                 </div>
                 <div class="form-group row margin-zero">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Senha</label>
-                    <div class="col-sm-9"><input class="form-control" id="pass-tf" type="password" name="pass" value="" /></div>
+                    <div class="col-sm-9"><input class="form-control" id="pass-tf" type="password" name="password" value="" /></div>
                 </div>
                 <hr />
                 <div class="form-buttons">
