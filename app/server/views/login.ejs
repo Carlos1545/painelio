@@ -4,20 +4,31 @@
         <% include partials/head %>
     </head>
     <body>
-        <div class="center-vertical" id="login">
-            <form class="card card-body bg-light" method="post">
-                <h2>Painel.io</h2>
-                <h6>Entre na sua conta</h6>
-                <div class="form-group"><label>Usuário</label><input class="form-control" type="text" id="user-tf" name="user" /></div>
-                <div class="form-group"><label>Senha</label><input class="form-control" type="password" id="pass-tf" name="pass" /></div>
-                <div id="row1"><button class="btn btn-light btn-left" type="button" id="btn_remember"><span class="fa fa-check-square"></span>Lembre-me</button><button class="btn btn-primary" type="submit" id="btn_sign_in"><span class="fa fa-lock"></span>Entrar</button></div>
-                <hr/>
-                <div class="btm-links">
-                    <div id="forgot-password"><a href="#">Esqueceu sua senha?</a></div>
-                    <div id="create-account"><a href="/signup">Crie uma conta!</a></div>
+      <div class="container text-center" id="login">
+        <h1>Painel.io</h1>
+        <div class="box-login">
+            <form name="form" class="form-validation" method="post">
+                <div class="text-danger wrapper text-center"> </div>
+                
+                <div class="list-group">
+                    <input type="text" placeholder="Email" class="border-0" name="user" required>
+                    <input type="password" placeholder="Password" class="border-0" name="pass" required>
                 </div>
+                <button type="submit" class="btn btn-lg btn-login-p">Entrar</button>
+                <div class="m-3"><a href="#" id="forgot-password">Esqueceu a senha?</a></div>
+                <hr class="m-2">
+                <div class="text-center m-2"><small>Não tem uma conta?</small></div>
+                <a href="/signup" id="create-account" class="btn btn-lg btn-secondary btn-login-s border-0">Criar uma conta</a>
             </form>
         </div>
+        <div class="text-center">
+            <p>
+        <small class="text-muted">Sistema de gerenciamento de projetos e clientes<br>&copy; 2019</small>
+        </p>
+        </div>
+      </div>
+
+        
 
         <% include partials/alert %>
         <% include partials/lost-password %>

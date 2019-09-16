@@ -65,78 +65,62 @@ a.painel-btn:hover{
 
 /* --------------------------- LOGIN */
 #login {
-  width: 380px;
+  width: 360px;
+  line-height: 1.42857143;
+  color: #58666e;
+  margin-top: 50px;
+  font-size: 14px;
 }
-#login .btn {
-  float: left;
-  width: 48%;
-  font-size: 0.8rem;
+#login h1 {
+  margin-top: 15px;
+  float: none !important;
+  height: auto;
+  padding: 0 20px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 50px;
+}
+#login .box-login{
+  margin-bottom: 30px;
+}
+#login .wrapper{
+  padding: 15px;
+}
+#login .list-group{
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+#login .list-group input{
+  padding: 8px 20px;
+  height: 45px;
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+}
+#login .list-group input:focus{
+  outline: none;
+}
+#login .btn.btn-login-p {
+  width: 100%;
+  background-color: #7266ba;
+  color: #fff;
+}
+#login .btn.btn-login-s {
+  width: 100%;
+  background-color: #fff;
+  color: #5a6268;
 }
 #login .btn-btm {
   padding: 0;
-}
-#login .btn-left {
-  margin-right: 4%;
-}
-#login #btn_sign_in {
-  color: #fff;
-}
-#login #btn_remember {
-  background: #fff;
-  border: 1px solid #ced4da;
-}
-#login #btn_remember:hover {
-  background: #f8f9fa;
-}
-#login h6,
-#login label {
-  font-size: 0.8rem;
-}
-#login h6,
-#login label,
-#login #btn_remember {
-  color: #808080;
-  text-shadow: -1px 1px 0 #fff;
-}
-#login .fa {
-  padding-right: 10px;
-}
-#login hr {
-  clear: left;
-}
-#login .btm-links {
-  font-size: 0.8rem;
-  margin: 2px 0 0 0;
-}
-#login .btm-links #forgot-password {
-  float: left;
-  margin-left: 16px;
-}
-#login .btm-links #create-account {
-  float: right;
-  margin-right: 20px;
-}
-#account-form-container label {
-  text-align: right;
-  margin-top: 2px;
-}
-#account-form-container input,
-#account-form-container select {
-  font-size: 0.875rem;
-}
-#account-form-container .col-sm-9 {
-  padding-left: 0;
-}
-#account-form-container .margin-zero {
-  margin-bottom: 0;
-}
-#account-form-container .form-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-#account-form-container .form-buttons>:not(:last-child) {
-  margin-right: 0.5rem;
 }
 
 /* --------------------------- MODAL */
