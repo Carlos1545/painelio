@@ -2,4 +2,3 @@
 node_modules
 app/server/modules/email-settings-mine.js
 app/server/views/remove
-app/config/database.js

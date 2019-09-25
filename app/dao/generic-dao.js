@@ -1,26 +1,24 @@
-const dbconfig  = require('../config/database');
-const connectionFactory = require('./connection-factory');
-const connection = connectionFactory();
+const pool = require('./pool-factory');
 
-function genericDao(tableName, callback){
-    let erro, entity = {};
-    
+function genericDao(tableName){
+    let _entity = {};
+
 // CONEXÃO INICIAL COM O BANCO DE DADOS PARA INSERIR NA ENTIDADE, O NOME, OS DADOS E OS CAMPOS
-    connection.query(`SELECT * FROM ${tableName}`, function (error, tabela, fields) {
-        if (error){
-            console.error('error ao conectar: ' + error.stack);
-            throw error;
-        }else{
-            console.log(`mysql :: conectado ao banco :: ${dbconfig.connection.database} :: tabela ${tableName}`);
-        }
-        entity.nome = tableName;
-        entity.dados = tabela;
-        entity.campos = fields.map(element => element.name);
+    pool.getConnection(function(err, connection){
+        if(err) throw err;
 
-        callback(erro, entity);
+        connection.query(`SELECT * FROM ${tableName}`, function (error, tabela, fields) {
+            if(error) throw error;
+
+            connection.release();
+            
+            _entity.nome = tableName;
+            _entity.dados = tabela;
+            _entity.campos = fields.map(element => element.name);
+        });
     });
     
-    entity.findOne = function(entityToFind, callback){
+    _entity.findOne = function(entityToFind, callback){
         let entityEncontrado;
 
         try{
@@ -38,17 +36,21 @@ function genericDao(tableName, callback){
         }
         callback(this.erro, entityEncontrado, this);
     }
-    entity.insertOne = function(newData, callbackFunction){
-        let sql2 = `INSERT INTO ${tableName} (${Object.keys(newData).map(current => current)}) VALUES (${Object.values(newData).map( () => '?')})`;
-        connection.query(sql2, Object.values(newData), function(error, entityInserido){
-            if(error){
-                throw error;
-            }else{
+    _entity.insertOne = function(newData, callbackFunction){
+        pool.getConnection(function(err, connection){
+            if(err) throw err;
+            
+            let sql2 = `INSERT INTO ${tableName} (${Object.keys(newData).map(current => current)}) VALUES (${Object.values(newData).map( () => '?')})`;
+            connection.query(sql2, Object.values(newData), function(error, entityInserido){
+                if(error) throw error;
+
+                connection.release();
+                
                 callbackFunction(erro, entityInserido);
-            }
+            });
         });
     }
-    entity.findOneAndUpdate = function(entityToFind, keysToUpdate, otherObject, callbackFunction){
+    _entity.findOneAndUpdate = function(entityToFind, keysToUpdate, otherObject, callbackFunction){
         this.findOne(entityToFind, function(e, o, all){
             if (o == null){
                 callbackFunction('user-not-found');
@@ -63,30 +65,33 @@ function genericDao(tableName, callback){
             }
         });
     }
-    entity.updateOne = function(entityToUpdate, fieldsEntityToUpdate, callbackFunction){
-        let sql = `UPDATE ${tableName} SET ${Object.keys(fieldsEntityToUpdate).map((c, i) => c + ' = ?')} WHERE id = ${entityToUpdate.id}`;
-        connection.query(sql, Object.values(fieldsEntityToUpdate), function(error, entityInserido){
-            if(error){
-                callbackFunction(error, null);
-            }else{
-                callbackFunction(null, entityInserido)
-            }
-        })
+    _entity.updateOne = function(entityToUpdate, fieldsEntityToUpdate, callbackFunction){
+        pool.getConnection(function(err, connection){
+            if(err) throw err;
+            let sql = `UPDATE ${tableName} SET ${Object.keys(fieldsEntityToUpdate).map((c, i) => c + ' = ?')} WHERE id = ${entityToUpdate.id}`;
+            connection.query(sql, Object.values(fieldsEntityToUpdate), function(error, entityInserido){
+                if(error) throw error;
+
+                connection.release();
+                
+                callbackFunction(erro, entityInserido);
+            });
+        });
     }
-    entity.find = function(){
+    _entity.find = function(){
         console.log("find");
     }
-    entity.deleteOne = function(){
+    _entity.deleteOne = function(){
         console.log("deleteOne");
     }
-    entity.deleteMany = function({}, callbackFunction){
+    _entity.deleteMany = function({}, callbackFunction){
         console.log("deleteMany");
     }
-    entity.indexes = function(teste, callbackFunction){
+    _entity.indexes = function(teste, callbackFunction){
         console.log("indexes");
         callbackFunction(e, indexes);
     }
 
-    callback(erro, entity);
-} 
+    return _entity;
+}
 module.exports = genericDao;
